@@ -59,12 +59,12 @@ Create a `.env` file in the root directory with the following variables:
 ```env
 # Webmail IMAP Configuration
 user=support@auxaty.com
-password=Auxaty@500
-host=imap.hostinger.com
-port=993
-tls=true
-rejectUnauthorized=false
-NAME=Auxaty
+password=Your email passowrd
+host=imap server url
+port=port for imap server
+tls=tls value mostyly true
+rejectUnauthorized= mostly false
+NAME=business name
 
 # SMTP Configuration
 host_SMTP=smtp.hostinger.com
@@ -199,4 +199,4 @@ await sendmail(transportConfig, mailOptions)
 
 ## 📱 Compatible Email Providers
 
-This library works with most webmail servi
+This library works with most webmail services.
