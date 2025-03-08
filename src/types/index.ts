@@ -15,3 +15,20 @@ export interface MailboxConfig {
     rejectUnauthorized: boolean;
   };
 }
+
+export interface TransportConfigObj {
+  host: string;
+  port: number;
+  secure: boolean;
+  auth: {
+    user: string;
+    pass: string;
+  };
+}
+
+export interface MailOptionsObj {
+  from: string;
+  to: string;
+  subject: string;
+  text: string;
+}
