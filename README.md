@@ -1,7 +1,7 @@
 # 📧 Webmails REST API and WebSocket
 
 <div align="center">
-  
+  <div style= {width: 100}>
   ![Email Automation](https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/envelope-open-text.svg)
   
   *A lightweight TypeScript library for interacting with webmail services through both REST API and WebSocket connections*
@@ -9,7 +9,7 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
   [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
   [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](https://opensource.org/licenses/ISC)
-  
+  </div>
 </div>
 
 ## ✨ Features
