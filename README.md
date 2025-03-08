@@ -1,18 +1,45 @@
-# Webmails REST API and WebSocket
+# 📧 Webmails REST API and WebSocket
 
-A lightweight TypeScript library for interacting with webmail services through both REST API and WebSocket connections. This library allows you to efficiently receive and send emails programmatically.
+<div align="center">
+  
+  ![Email Automation](https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/envelope-open-text.svg)
+  
+  *A lightweight TypeScript library for interacting with webmail services through both REST API and WebSocket connections*
+  
+  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+  [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](https://opensource.org/licenses/ISC)
+  
+</div>
 
-## Features
+## ✨ Features
 
-- ✉️ **Dual Connection Methods**: 
+- 📲 **Dual Connection Methods**: 
   - WebSocket connection for real-time mail monitoring
   - REST API for retrieving inbox content
-- 📨 **Email Sending Functionality**: Simple way to send emails through SMTP
-- 🔒 **Secure Connections**: TLS support for secure communication
-- 🛠️ **Fully Configurable**: Easy to set up with your mail provider
-- 📋 **Type Definitions**: Written in TypeScript for better development experience
+- 📩 **Email Sending Functionality**: Simple way to send emails through SMTP
+- 🔐 **Secure Connections**: TLS support for secure communication
+- ⚙️ **Fully Configurable**: Easy to set up with your mail provider
+- 📝 **Type Definitions**: Written in TypeScript for better development experience
+- 🚀 **Performance Optimized**: Minimal resource usage
 
-## Installation
+## 🔍 Overview
+
+```mermaid
+graph LR
+    A[Your Application] --> B[WebSocket Connection]
+    A --> C[REST API]
+    A --> D[SMTP Sender]
+    B --> E[(Mail Server)]
+    C --> E
+    D --> E
+    E --> B
+    E --> C
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+## 📥 Installation
 
 ```bash
 # Clone the repository
@@ -25,26 +52,26 @@ cd webmails-rest-api-and-websocket
 npm install
 ```
 
-## Configuration
+## ⚙️ Configuration
 
 Create a `.env` file in the root directory with the following variables:
 
 ```env
 # Webmail IMAP Configuration
-user=your-email@domain.com
-password=your-email-password
-host=imap.your-provider.com
+user=support@auxaty.com
+password=Auxaty@500
+host=imap.hostinger.com
 port=993
 tls=true
 rejectUnauthorized=false
-name=Your Name
+NAME=Auxaty
 
 # SMTP Configuration
-host_SMTP=smtp.your-provider.com
+host_SMTP=smtp.hostinger.com
 SMTP_PORT=465
 ```
 
-## Usage
+## 🛠️ Usage
 
 ### Basic Usage
 
@@ -62,24 +89,25 @@ const process_mail = (sender: string, timestamp: Date, body: string) => {
 
 // Configure your mailbox
 const MAIL_BOX_CONFIG = {
-  user: "your-email@domain.com",
-  password: "your-password",
-  host: "imap.your-provider.com",
-  port: 993,
-  tls: true,
+  user: process.env.user as string,
+  password: process.env.password as string,
+  host: process.env.host as string, // imap.hostinger.com
+  port: Number(process.env.port as string), // 993
+  tls: Boolean(process.env.tls as string), // true
   tlsOptions: {
-    rejectUnauthorized: false,
+    rejectUnauthorized:
+      (process.env.rejectUnauthorized as string) == "true" ? true : false, // false
   },
 };
 
 // Configure SMTP for sending emails
 const TRANSPORT_CONFIG = {
-  host: "smtp.your-provider.com",
-  port: 465,
+  host: process.env.host_SMTP as string, // smtp.hostinger.com
+  port: Number(process.env.SMTP_PORT as string), // 465
   secure: true,
   auth: {
-    user: "your-email@domain.com",
-    pass: "your-password",
+    user: process.env.user as string,
+    pass: process.env.password as string,
   },
 };
 
@@ -91,23 +119,23 @@ await getInbox(MAIL_BOX_CONFIG);
 
 // Send an email
 const mailOptions = {
-  from: '"Your Name" <your-email@domain.com>',
+  from: `"${process.env.NAME}" <${process.env.user}>`,
   to: "recipient@example.com",
-  subject: "Hello from my application",
+  subject: "Hello from Auxaty",
   text: "This is a test email sent from my webmail automation.",
 };
 
 await sendmail(TRANSPORT_CONFIG, mailOptions);
 ```
 
-### Running the Project
+### 🏃‍♂️ Running the Project
 
 ```bash
 # Compile and run the project
 npm run dev
 ```
 
-## API Reference
+## 📚 API Reference
 
 ### WebSocket Email Monitoring
 
@@ -139,31 +167,36 @@ await sendmail(transportConfig, mailOptions)
 - `transportConfig`: SMTP configuration object
 - `mailOptions`: Object containing email details (from, to, subject, text)
 
-## Compatible Email Providers
+## 📊 Architecture
 
-This library works with most webmail services that support IMAP and SMTP, including:
+<div align="center">
+  
+```
+┌─────────────────┐       ┌─────────────────┐
+│                 │       │                 │
+│  Your Node.js   │◄─────►│    Mail Box     │
+│  Application    │       │ Configuration   │
+│                 │       │                 │
+└───────┬─────────┘       └─────────────────┘
+        │
+        │
+┌───────▼─────────┐       ┌─────────────────┐
+│                 │       │                 │
+│  WebSocket      │◄─────►│  REST API       │
+│  Connection     │       │  Connection     │
+│                 │       │                 │
+└───────┬─────────┘       └────────┬────────┘
+        │                          │
+        │                          │
+┌───────▼──────────────────────────▼────────┐
+│                                           │
+│              Email Server                 │
+│                                           │
+└───────────────────────────────────────────┘
+```
 
-- Hostinger
-- Gmail
-- Outlook
-- Yahoo Mail
-- ProtonMail (with bridge)
-- Custom domain email services
+</div>
 
-## License
+## 📱 Compatible Email Providers
 
-ISC
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Support
-
-If you encounter any issues or have questions, please open an issue on GitHub.
+This library works with most webmail servi
