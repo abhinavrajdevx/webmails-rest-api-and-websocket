@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/types/index.ts","./src/utils/scan-mail-box-rest-api.ts","./src/utils/scan-mail-box-ws.ts","./src/utils/sendmail.ts"],"version":"5.8.2"}
